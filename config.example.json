@@ -1,5 +1,5 @@
 {
-  "plugin_clone": "/home/you/src/Claude-Research-Briefing-Plugin",
+  "plugin_clone": "/home/you/src/Claude-Modular-Research-Plugin",
   "workspace": {
     "parent_dir": "~/repos",
     "topic_subfolders": false,
@@ -19,7 +19,7 @@
     "method": "rclone",
     "rclone_remote": "gdrive:",
     "rclone_flags": [],
-    "folder": "Research Briefings",
+    "folder": "Research",
     "upload": ["pdf", "podcast"]
   },
   "email": {

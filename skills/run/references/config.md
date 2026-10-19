@@ -1,8 +1,8 @@
 # Config
 
 One JSON file, machine-local, never committed:
-`~/.claude-plugins/research-briefing/config.json` (override with
-`$RESEARCH_BRIEFING_CONFIG`). A full example is `config.example.json` at the plugin
+`~/.claude-plugins/modular-research/config.json` (override with
+`$MODULAR_RESEARCH_CONFIG`). A full example is `config.example.json` at the plugin
 root. Every field is optional; the defaults are shown.
 
 ```json
@@ -27,7 +27,7 @@ root. Every field is optional; the defaults are shown.
     "method": "rclone",
     "rclone_remote": "gdrive:",
     "rclone_flags": [],
-    "folder": "Research Briefings",
+    "folder": "Research",
     "upload": ["pdf", "podcast"]
   },
   "email": {

@@ -1,4 +1,4 @@
-// Pandoc template (pandoc -t typst --template=report.typ) for a research briefing.
+// Pandoc template (pandoc -t typst --template=report.typ) for a modular-research report.
 // Pandoc fills title, subtitle, date, author, abstract and body from the
 // markdown's YAML front matter. Never write a dollar-delimited variable name in a
 // comment here: pandoc expands it even inside a comment and corrupts the file.
@@ -59,7 +59,7 @@
 
 // Title block
 #block(width: 100%, inset: (bottom: 1em))[
-  #text(size: 9pt, fill: luma(110), tracking: 0.08em)[RESEARCH BRIEFING]
+  #text(size: 9pt, fill: luma(110), tracking: 0.08em)[RESEARCH REPORT]
   #v(0.2em)
   #text(size: 24pt, weight: "bold", fill: accent)[$title$]
 $if(subtitle)$

@@ -64,7 +64,7 @@ PDF report · podcast (~N min) · Drive · email   ← strike any the user switc
 # <Name>
 
 Research notebook for: <central question>. Created YYYY-MM-DD by the
-research-briefing plugin (danielrosehill/Claude-Research-Briefing-Plugin).
+modular-research plugin (danielrosehill/Claude-Modular-Research-Plugin).
 
 - `brief/brief.md` is the spec. Change it before changing direction.
 - Every factual claim in `report/` traces to an entry in `sources/sources.md`.

@@ -1,25 +1,30 @@
 ---
 name: run
-description: End-to-end research briefing from a (usually dictated) research brief — creates a new GitHub repo as the research notebook, researches the question with parallel subagents and logged sources, writes a typeset PDF report, turns it into a two-host educational podcast (MP3), uploads both to Google Drive and emails the results. Use when the user dictates or pastes a research brief and wants "the usual" research run, says "research this and send me the PDF/podcast", "do a research briefing on X", or asks for a research repo plus PDF plus podcast. Any stage can be skipped (e.g. "no podcast", "don't email").
+description: Run one research task from a (usually dictated) brief through whichever output modules the user wants — a GitHub repo as the research notebook, parallel-subagent research with logged sources, a typeset PDF report, a two-host educational podcast (MP3), Google Drive upload and an email. Use when the user dictates or pastes a research brief and wants "the usual" research run, says "research this and send me the PDF/podcast", or asks for a research repo plus report. Any module can be switched off ("no podcast", "don't email", "just the PDF"); run inside an existing workspace it adds a follow-up round instead of a new repo.
 ---
 
-# Research briefing — end to end
+# Modular research — one task, chosen outputs
 
 Brief → workspace repo → research → report PDF → podcast → Drive → email.
-Each stage writes to the workspace and commits, so a run that stops can be resumed
-from the last completed stage (see **Resuming**).
+Every stage after research is a module: the user's defaults come from the config,
+and the brief can switch any of them on or off. Each stage writes to the workspace
+and commits, so a run that stops can be resumed (see **Resuming**).
+
+The task is self-contained, so a workspace can be a one-off. It can also become
+ongoing: run this skill again inside the workspace and it adds a round (see
+**Follow-up rounds**) rather than starting a new repo.
 
 ## 0. Locate the plugin and load config
 
 **Plugin root** (scripts and templates live there, not in this file):
 `${CLAUDE_PLUGIN_ROOT}` if set; otherwise the `plugin_clone` path in the config;
-otherwise `gh repo clone danielrosehill/Claude-Research-Briefing-Plugin` into a
+otherwise `gh repo clone danielrosehill/Claude-Modular-Research-Plugin` into a
 scratch directory. `git -C <root> pull --ff-only` before use if it is a clone.
 Every `references/…` path below means `<plugin-root>/skills/run/references/…`.
 
 **Config**, first hit wins:
-1. `$RESEARCH_BRIEFING_CONFIG`
-2. `~/.claude-plugins/research-briefing/config.json`
+1. `$MODULAR_RESEARCH_CONFIG`
+2. `~/.claude-plugins/modular-research/config.json`
 
 If neither exists, run the setup interview in `references/config.md` and write the
 file before continuing. Read `references/config.md` for every field's meaning.
@@ -96,3 +101,20 @@ the process.
 | outputs present, `delivery.json` missing or without `email.sent_at` | 6 |
 
 Never redo a stage whose output exists unless the user asks.
+
+## Follow-up rounds
+
+If the current directory is already a workspace (it has `brief/brief.md`) and the
+new brief extends it rather than resuming it, skip step 2 and run as round NN
+(02, 03…):
+
+- brief → `brief/round-NN.md` (raw dictation → `brief/round-NN-raw.md`)
+- notes continue the numbering in `notes/`; sources append to `sources/sources.md`
+- the report gets updated in place, plus a `## Round NN` changelog line under
+  *Open questions*; or, if the user wants a separate document,
+  `report/round-NN.md` → `outputs/<Name>-NN.pdf`
+- podcast → `podcast/round-NN.md` → `outputs/<Name>-NN-podcast.mp3`, covering
+  only what is new
+- `delivery.json` gets a `rounds` array; earlier entries are never overwritten
+
+Ask which way the report should go only if the brief doesn't say.

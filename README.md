@@ -1,9 +1,22 @@
-# Claude-Research-Briefing-Plugin
+# Claude-Modular-Research-Plugin
 
-A Claude Code plugin that runs one research job from start to finish. You dictate a
-brief, and you get back a private GitHub repo with the working notes, a typeset PDF
-report, an educational two-host podcast episode, copies of both on Google Drive,
-and an email with links.
+A Claude Code plugin for **modular research tasks**. You give it a brief, often
+dictated, and it researches the question. It then produces whichever outputs you
+want:
+
+- a private GitHub repo holding the working notes and sources
+- a typeset PDF report
+- an educational two-host podcast episode
+- copies of the PDF and podcast on Google Drive
+- an email with links
+
+Your defaults come from a config file, and any single brief can switch modules on
+or off.
+
+It is built for the single task: one brief in, finished outputs out. The repo it
+creates does not have to be a dead end, though. Run the plugin again inside that
+repo and it adds a follow-up round instead of starting over, so a one-off can grow
+into an ongoing workspace when the subject turns out to deserve one.
 
 Part of the [danielrosehill Claude Code marketplace](https://github.com/danielrosehill/Claude-Code-Plugins).
 
@@ -11,9 +24,9 @@ Part of the [danielrosehill Claude Code marketplace](https://github.com/danielro
 
 | Skill | What it does |
 |---|---|
-| `research-briefing:run` | The whole pipeline: brief → workspace repo → research → PDF → podcast → Drive → email. Any stage can be switched off per run ("no podcast"). Resumable from the last completed stage. |
-| `research-briefing:make-podcast` | Turns any document into a script and MP3. This is the podcast stage on its own. |
-| `research-briefing:deliver` | Uploads existing outputs to Drive and sends the email. This is the delivery stage on its own. |
+| `modular-research:run` | The whole pipeline: brief → workspace repo → research → PDF → podcast → Drive → email. You can switch any module off for a run ("no podcast"). A run resumes from the last stage it completed. Inside an existing workspace, it adds a follow-up round. |
+| `modular-research:make-podcast` | Turns any document into a script and MP3. This is the podcast stage on its own. |
+| `modular-research:deliver` | Uploads existing outputs to Drive and sends the email. This is the delivery stage on its own. |
 
 The stage procedures live in `skills/run/references/` and are read when needed. The
 two standalone skills reuse the same references, so the procedures cannot drift
@@ -51,8 +64,8 @@ apart.
 
 ## Configuration
 
-`~/.claude-plugins/research-briefing/config.json`, or the path in
-`$RESEARCH_BRIEFING_CONFIG`. Start from `config.example.json`. If the file is
+`~/.claude-plugins/modular-research/config.json`, or the path in
+`$MODULAR_RESEARCH_CONFIG`. Start from `config.example.json`. If the file is
 missing, the first run asks a few questions and writes it for you. Every field is
 documented in `skills/run/references/config.md`.
 

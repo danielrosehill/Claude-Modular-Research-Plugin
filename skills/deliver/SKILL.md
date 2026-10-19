@@ -1,15 +1,15 @@
 ---
 name: deliver
-description: Upload a research briefing's PDF and podcast to Google Drive and email the summary with links — the delivery stage of the research-briefing run, on its own. Use when outputs already exist and the user says "send it to me", "put it on Drive and email me", "re-send the briefing", or a full run stopped before delivery.
+description: Upload a research task's PDF and podcast to Google Drive and email the summary with links — the delivery module of modular-research, on its own. Use when outputs already exist and the user says "send it to me", "put it on Drive and email me", "re-send the report", or a run stopped before delivery.
 ---
 
-# Deliver a research briefing
+# Deliver research outputs
 
 1. **Plugin root and config** — resolve as in the `run` skill, step 0. Delivery
    needs the `drive` and `email` blocks of
-   `~/.claude-plugins/research-briefing/config.json`; if the file is missing, run
+   `~/.claude-plugins/modular-research/config.json`; if the file is missing, run
    the setup interview in `<plugin-root>/skills/run/references/config.md` first.
-2. **Find the outputs** — in a research-briefing workspace (has `brief/brief.md`),
+2. **Find the outputs** — in a modular-research workspace (has `brief/brief.md`),
    `outputs/<Name>.pdf`, `outputs/<Name>-podcast.mp3`, and the abstract from
    `report/report.md`. Outside one, ask which files to send.
 3. **Already delivered?** — if `delivery.json` exists with `email.sent_at`, say so

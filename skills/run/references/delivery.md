@@ -36,7 +36,7 @@ first — same staging step as the email attachment below.
 
 ## Email
 
-Plain, short, English. Subject: `Research briefing: <title>`.
+Plain, short, English. Subject: `Research: <title>`.
 
 ```
 <The abstract, 3–5 sentences.>
@@ -76,7 +76,7 @@ email route if one exists; do not send RTL text as plain text.
 
 - Drive: `rclone lsjson` shows both files with non-zero size.
 - Email: search the sent folder for the subject (e.g. Gmail search
-  `in:sent subject:"Research briefing: <title>"`) and confirm one hit.
+  `in:sent subject:"Research: <title>"`) and confirm one hit.
 
 Write `delivery.json` at the workspace root:
 

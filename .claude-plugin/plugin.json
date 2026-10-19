@@ -1,17 +1,17 @@
 {
-  "name": "research-briefing",
-  "version": "1.0.0",
-  "description": "End-to-end research briefing from a dictated brief: new GitHub repo as the research notebook, parallel-subagent research with a source log, a Typst-typeset PDF report, a two-host educational podcast (Gemini multi-speaker TTS), upload to Google Drive and an email with the results. Each stage also runs on its own (make-podcast, deliver).",
+  "name": "modular-research",
+  "version": "1.1.0",
+  "description": "Modular research task: brief in, PDF + podcast out. Takes a (dictated) brief through a GitHub repo as research notebook, parallel-subagent research with a source log, a Typst PDF report and a two-host educational podcast (Gemini TTS), then Google Drive and email. Every output module is optional and runs alone; the repo can stay a one-off or keep growing in follow-up rounds.",
   "author": {
     "name": "Daniel Rosehill",
     "url": "https://github.com/danielrosehill"
   },
-  "repository": "https://github.com/danielrosehill/Claude-Research-Briefing-Plugin",
+  "repository": "https://github.com/danielrosehill/Claude-Modular-Research-Plugin",
   "license": "MIT",
   "keywords": [
     "research",
     "deep-research",
-    "briefing",
+    "modular",
     "pdf",
     "typst",
     "podcast",

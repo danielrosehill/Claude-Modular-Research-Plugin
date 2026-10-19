@@ -1,6 +1,6 @@
 ---
 name: make-podcast
-description: Turn a document — a research report, a PDF, a markdown file, a repo's README — into a two-host educational podcast episode (script plus MP3) using Gemini multi-speaker TTS. Use when the user says "make a podcast of this", "turn this report into audio", "I want to listen to this", or wants to (re)generate only the podcast stage of a research briefing.
+description: Turn a document — a research report, a PDF, a markdown file, a repo's README — into a two-host educational podcast episode (script plus MP3) using Gemini multi-speaker TTS. Use when the user says "make a podcast of this", "turn this report into audio", "I want to listen to this", or wants to (re)generate only the podcast module of a modular-research task.
 ---
 
 # Make a podcast from a document

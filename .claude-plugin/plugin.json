@@ -1,0 +1,24 @@
+{
+  "name": "research-briefing",
+  "version": "1.0.0",
+  "description": "End-to-end research briefing from a dictated brief: new GitHub repo as the research notebook, parallel-subagent research with a source log, a Typst-typeset PDF report, a two-host educational podcast (Gemini multi-speaker TTS), upload to Google Drive and an email with the results. Each stage also runs on its own (make-podcast, deliver).",
+  "author": {
+    "name": "Daniel Rosehill",
+    "url": "https://github.com/danielrosehill"
+  },
+  "repository": "https://github.com/danielrosehill/Claude-Research-Briefing-Plugin",
+  "license": "MIT",
+  "keywords": [
+    "research",
+    "deep-research",
+    "briefing",
+    "pdf",
+    "typst",
+    "podcast",
+    "tts",
+    "gemini",
+    "google-drive",
+    "email",
+    "dictation"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "plugin_clone": "/home/you/src/Claude-Research-Briefing-Plugin",
+  "workspace": {
+    "parent_dir": "~/repos",
+    "topic_subfolders": false,
+    "name_pattern": "{Topic}-{MMYY}",
+    "github": { "create": true, "visibility": "private", "owner": "your-github-user" }
+  },
+  "pdf": { "toc": true, "author": "Claude" },
+  "podcast": {
+    "enabled": true,
+    "model": "gemini-3.8-flash-tts",
+    "hosts": { "ALEX": "Kore", "SAM": "Puck" },
+    "target_minutes": 15,
+    "api_key_op_ref": null
+  },
+  "drive": {
+    "enabled": true,
+    "method": "rclone",
+    "rclone_remote": "gdrive:",
+    "rclone_flags": [],
+    "folder": "Research Briefings",
+    "upload": ["pdf", "podcast"]
+  },
+  "email": {
+    "enabled": true,
+    "method": "gmail-mcp",
+    "mcp_send_tool": "send_gmail_message",
+    "from_account": "you@example.com",
+    "to": "you@example.com",
+    "attach_pdf": false,
+    "staging": null
+  }
+}

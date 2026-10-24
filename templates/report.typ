@@ -31,7 +31,9 @@
   },
   footer: context {
     set text(size: 8pt, fill: luma(120))
-$if(researched_by)$
+$if(footer_stamp)$
+    [$footer_stamp$]
+$elseif(researched_by)$
     [Researched by $researched_by$$if(completed)$ · $completed$$endif$]
 $endif$
     h(1fr)
@@ -54,6 +56,10 @@ $endif$
 #set table(inset: 6pt, stroke: 0.5pt + luma(200))
 #show table.cell.where(y: 0): set text(weight: "bold")
 #show figure.where(kind: table): set figure.caption(position: top)
+// Pandoc wraps each table in align(center), and auto-aligned cells inherit that;
+// justified text in narrow cells also spreads words apart. Left, ragged cells read better.
+#show table.cell.where(align: auto): set align(left)
+#show table: set par(justify: false)
 #show quote: it => block(
   inset: (left: 1em, y: 0.3em),
   stroke: (left: 2pt + accent),
@@ -99,6 +105,22 @@ $endif$
 $if(requested_by)$
     text(fill: luma(110))[Requested by], [$requested_by$],
 $endif$
+  )
+]
+$endif$
+
+// Free-form provenance rows for other document kinds: a front matter list
+// "provenance" of label/value maps.
+$if(provenance)$
+#block(width: 100%, inset: (y: 0.4em))[
+  #set text(size: 8.5pt)
+  #grid(
+    columns: (auto, 1fr),
+    column-gutter: 1.2em,
+    row-gutter: 0.45em,
+$for(provenance)$
+    text(fill: luma(110))[$provenance.label$], [$provenance.value$],
+$endfor$
   )
 ]
 $endif$

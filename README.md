@@ -49,7 +49,10 @@ apart.
    headers. Optional front-matter fields `kicker`, `researched_by`, `started`,
    `completed`, `sources_count`, `method` and `requested_by` add a provenance block
    under the title and a "Researched by … · <completed>" footer on every page
-   (added 2026-10-24; reports without them render as before).
+   (added 2026-10-24; reports without them render as before). Other document kinds
+   can pass `provenance` (a list of `label`/`value` pairs) and `footer_stamp` instead;
+   `ideation-planning:voice-note-brief-pdf` uses them for project briefs. Table cells
+   are left-aligned and unjustified unless the markdown sets an alignment.
 5. **Podcast**: a two-host script written for listening (≈150 words/min). It is
    rendered with Gemini multi-speaker TTS by `scripts/podcast_tts.py` (standard
    library + ffmpeg).

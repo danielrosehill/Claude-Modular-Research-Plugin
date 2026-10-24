@@ -27,6 +27,7 @@ Part of the [danielrosehill Claude Code marketplace](https://github.com/danielro
 | `modular-research:run` | The whole pipeline: brief → workspace repo → research → PDF → podcast → Drive → email. You can switch any module off for a run ("no podcast"). A run resumes from the last stage it completed. Inside an existing workspace, it adds a follow-up round. |
 | `modular-research:make-podcast` | Turns any document into a script and MP3. This is the podcast stage on its own. |
 | `modular-research:deliver` | Uploads existing outputs to Drive and sends the email. This is the delivery stage on its own. |
+| `modular-research:research-report` | Research inside the repo you are already in: delegated research agents, then a timestamped executive report PDF stamped with the agent, model and exact start/finish time, saved to `research/YYYY-MM-DD-<slug>/`, committed, and emailed (Drive on request). No new repo, no podcast. |
 
 The stage procedures live in `skills/run/references/` and are read when needed. The
 two standalone skills reuse the same references, so the procedures cannot drift
@@ -45,7 +46,10 @@ apart.
    against the cited pages.
 4. **Report**: pandoc markdown → Typst → PDF, using `templates/report.typ`. The
    template gives a title block, a summary box, a table of contents and running
-   headers.
+   headers. Optional front-matter fields `kicker`, `researched_by`, `started`,
+   `completed`, `sources_count`, `method` and `requested_by` add a provenance block
+   under the title and a "Researched by … · <completed>" footer on every page
+   (added 2026-10-24; reports without them render as before).
 5. **Podcast**: a two-host script written for listening (≈150 words/min). It is
    rendered with Gemini multi-speaker TTS by `scripts/podcast_tts.py` (standard
    library + ffmpeg).

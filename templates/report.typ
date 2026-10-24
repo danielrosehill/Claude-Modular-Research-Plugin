@@ -31,6 +31,9 @@
   },
   footer: context {
     set text(size: 8pt, fill: luma(120))
+$if(researched_by)$
+    [Researched by $researched_by$$if(completed)$ · $completed$$endif$]
+$endif$
     h(1fr)
     counter(page).display("1 / 1", both: true)
   },
@@ -59,7 +62,7 @@
 
 // Title block
 #block(width: 100%, inset: (bottom: 1em))[
-  #text(size: 9pt, fill: luma(110), tracking: 0.08em)[RESEARCH REPORT]
+  #text(size: 9pt, fill: luma(110), tracking: 0.08em)[$if(kicker)$$kicker$$else$RESEARCH REPORT$endif$]
   #v(0.2em)
   #text(size: 24pt, weight: "bold", fill: accent)[$title$]
 $if(subtitle)$
@@ -70,6 +73,35 @@ $endif$
   #text(size: 9pt, fill: luma(110))[$if(author)$$for(author)$$author$$sep$, $endfor$ · $endif$$date$]
 ]
 #line(length: 100%, stroke: 1pt + accent)
+
+// Provenance: who did the research and when. Filled from the front matter
+// fields researched_by, started, completed, sources_count and method.
+$if(researched_by)$
+#block(width: 100%, inset: (y: 0.4em))[
+  #set text(size: 8.5pt)
+  #grid(
+    columns: (auto, 1fr),
+    column-gutter: 1.2em,
+    row-gutter: 0.45em,
+    text(fill: luma(110))[Researched by], [$researched_by$],
+$if(started)$
+    text(fill: luma(110))[Started], [$started$],
+$endif$
+$if(completed)$
+    text(fill: luma(110))[Completed], [$completed$],
+$endif$
+$if(sources_count)$
+    text(fill: luma(110))[Sources], [$sources_count$],
+$endif$
+$if(method)$
+    text(fill: luma(110))[Method], [$method$],
+$endif$
+$if(requested_by)$
+    text(fill: luma(110))[Requested by], [$requested_by$],
+$endif$
+  )
+]
+$endif$
 
 $if(abstract)$
 #block(fill: luma(245), inset: 12pt, radius: 3pt, width: 100%)[

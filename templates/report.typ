@@ -60,6 +60,9 @@ $endif$
 // justified text in narrow cells also spreads words apart. Left, ragged cells read better.
 #show table.cell.where(align: auto): set align(left)
 #show table: set par(justify: false)
+// Pandoc wraps tables in figures, which don't break across pages: a long table jumped to the
+// next page and left its heading alone on an empty one (Proofed report, 2026-10-24).
+#show figure.where(kind: table): set block(breakable: true)
 #show quote: it => block(
   inset: (left: 1em, y: 0.3em),
   stroke: (left: 2pt + accent),

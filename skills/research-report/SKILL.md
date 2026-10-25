@@ -7,17 +7,21 @@ description: Research a question inside the current project repo by delegating t
 
 Question → research agents → checked findings → executive report PDF → repo, email, (Drive).
 `run` makes a new repo per task; this skill works inside the current project repo and adds
-the provenance stamp. It reuses `run`'s research rules, renderer and delivery steps, so they
-cannot drift. First written 2026-10-24.
+the provenance stamp. It shares `run`'s research rules, renderer and delivery references, so
+they cannot drift. First written 2026-10-24.
 
 ## 0. Setup
 
-- **Plugin root and config:** as in `run` step 0 (`${CLAUDE_PLUGIN_ROOT}`, else `plugin_clone`
-  in `~/.claude-plugins/modular-research/config.json`, else clone
-  `danielrosehill/Claude-Modular-Research-Plugin`). `references/…` below means
-  `<plugin-root>/skills/run/references/…`. Delivery uses the config's `email` and `drive` blocks.
+- **Plugin root** (scripts live there): `${CLAUDE_PLUGIN_ROOT}` if set; else the `plugin_clone`
+  path in the config; else `gh repo clone danielrosehill/Claude-Modular-Research-Plugin` into a
+  scratch directory (`git -C <root> pull --ff-only` before use if it is a clone).
+  `references/…` below means `skills/run/references/…` in the plugin.
+- **Config**, first hit wins: `$MODULAR_RESEARCH_CONFIG`, then
+  `~/.claude-plugins/modular-research/config.json`. If neither exists, run the setup interview
+  in `references/config.md` and write the file first; that file also explains every field.
+  Delivery uses the config's `email` and `drive` blocks.
 - **Start the clock first:** `date +%Y-%m-%dT%H:%M:%S%:z` before any research call. That is
-  `started`. Precise to the second, with the offset.
+  `started`, precise to the second, with the offset.
 - **Folder:** `research/YYYY-MM-DD-<slug>/` at the repo root, unless the repo's `CLAUDE.md`
   names another place. Not in a git repo: ask where it goes.
 
@@ -34,15 +38,15 @@ ambiguous.
 Follow `references/research.md` (fan-out, note format, source log, rules, synthesis) with these
 paths: notes in `research/<date>-<slug>/notes/NN-<slug>.md`, sources in
 `research/<date>-<slug>/sources.md`. One agent per sub-question, all in one message; a narrow
-question with one sub-question gets one agent. Give each agent the repo context it needs in the
-brief: it can't see this conversation.
+question with one sub-question gets one agent. Each agent's brief carries the repo context it
+needs: it can't see this conversation.
 
 Record for the stamp: the model of each agent (the `Agent` tool result or its own report; ask it
 to state its model ID in its summary) and your own model ID. Never guess a model name.
 
 Then synthesise per `references/research.md`: read every note, open the URLs behind the claims
-the answer rests on, resolve conflicts, one retry for a thin answer that matters. Take
-`completed` (`date +%Y-%m-%dT%H:%M:%S%:z`) when synthesis is done.
+the answer rests on, resolve conflicts, one retry for a thin answer that matters. When synthesis
+is done, take `completed` (same `date` command).
 
 ## 3. The executive report (`report.md`)
 
@@ -81,7 +85,7 @@ Body, in this order (rules from `references/report.md`):
 6. **Sources:** numbered `[1]`… in order of first citation: title, publisher, date, URL,
    accessed date.
 
-Short is fine: 2–6 pages typical for an executive report.
+Short is fine: 2–6 pages is typical.
 
 ## 4. Render and check
 

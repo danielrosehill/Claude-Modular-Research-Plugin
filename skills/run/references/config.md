@@ -52,7 +52,7 @@ root. Every field is optional; the defaults are shown.
 | `podcast.model` | Any Gemini TTS model. `gemini-3.x` and `gemini-2.5` take different request shapes; the script handles both. |
 | `podcast.hosts` | Exactly two `LABEL: voice` pairs. Labels are what the script uses (`ALEX:`); voices are Gemini prebuilt voice names. |
 | `podcast.target_minutes` | Script length target at ~150 spoken words per minute. |
-| `podcast.api_key_op_ref` | 1Password reference (`op://Vault/Item/field`) for the Gemini key. Wins over `$GEMINI_API_KEY`, which is commonly stale. |
+| `podcast.api_key_op_ref` | Optional secret-manager reference (e.g. a 1Password `op://` reference) for the Gemini key. By default the key comes from `$GEMINI_API_KEY`; if set, this reference wins over it. |
 | `drive.method` | `rclone` (local, one command, recommended), `skill` (delegate to a named Drive-upload skill in `drive.skill`), or `mcp` (a Google Drive MCP that takes a file URL — needs `email.staging`-style staging). |
 | `drive.rclone_remote` / `rclone_flags` | Remote plus extra flags, e.g. `["--drive-team-drive", "<shared drive id>"]` to target a Shared Drive through a My-Drive remote. |
 | `drive.folder` | Folder under the remote root. Each run gets its own subfolder named after the workspace. |

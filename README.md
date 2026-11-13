@@ -81,7 +81,7 @@ documented in `skills/run/references/config.md`.
 ```bash
 scripts/render_pdf.sh report.md out.pdf [--toc]
 scripts/podcast_tts.py script.md out.mp3 [--model gemini-3.8-flash-tts] \
-    [--voices ALEX=Kore,SAM=Puck] [--op-ref op://Vault/Item/field]
+    [--voices ALEX=Kore,SAM=Puck] [--op-ref <optional secret reference>]
 ```
 
 ## Gemini TTS: things learned building this (verified 2026-10-19)
@@ -98,9 +98,10 @@ scripts/podcast_tts.py script.md out.mp3 [--model gemini-3.8-flash-tts] \
   script is written. 2.5 accepts a style line prepended to the text.
 - Multi-speaker mode takes exactly two speakers.
 - Audio comes back as base64 raw PCM (16-bit, 24 kHz, mono) in `inlineData`.
-- `podcast_tts.py` uses a key from `--op-ref` before `$GEMINI_API_KEY`. An exported
-  shell key is often stale, and with the opposite order the script would quietly
-  use it and fail with `API_KEY_INVALID`.
+- `podcast_tts.py` reads the key from `$GEMINI_API_KEY`. Optionally, `--op-ref`
+  takes a secret-manager reference (for example a 1Password `op://` reference)
+  and wins over the environment variable, which helps when an exported key is stale
+  and would fail with `API_KEY_INVALID`.
 
 ## Pandoc template trap
 

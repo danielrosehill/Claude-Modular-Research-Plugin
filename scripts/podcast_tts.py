@@ -13,7 +13,7 @@ The script is split into chunks of whole turns (Gemini TTS degrades and can
 truncate on long inputs), each chunk is synthesised separately, and the PCM is
 concatenated and encoded to MP3 with ffmpeg.
 
-API key resolution: --api-key, then `op read <--op-ref>`, then $GEMINI_API_KEY.
+API key resolution: --api-key, then the optional `op read <--op-ref>`, then $GEMINI_API_KEY.
 Standard library only; needs ffmpeg on PATH.
 """
 import argparse
@@ -45,7 +45,7 @@ def resolve_key(args):
         sys.exit(f"op read failed for {args.op_ref}: {out.stderr.strip()}")
     if os.environ.get("GEMINI_API_KEY"):
         return os.environ["GEMINI_API_KEY"]
-    sys.exit("No Gemini API key: pass --api-key, set GEMINI_API_KEY, or pass --op-ref")
+    sys.exit("No Gemini API key: pass --api-key, or set GEMINI_API_KEY (optionally pass --op-ref)")
 
 
 def parse_turns(text):
@@ -147,7 +147,7 @@ def main():
     ap.add_argument("--retries", type=int, default=4)
     ap.add_argument("--bitrate", default="96k")
     ap.add_argument("--api-key")
-    ap.add_argument("--op-ref", help="1Password secret reference for the key, e.g. op://Vault/Item/password")
+    ap.add_argument("--op-ref", help="optional secret reference for the key, read with `op read` (the key is normally taken from $GEMINI_API_KEY)")
     args = ap.parse_args()
 
     turns = parse_turns(open(args.script, encoding="utf-8").read())
